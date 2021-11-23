@@ -30,9 +30,11 @@ Either use [WSL](https://docs.microsoft.com/en-us/windows/wsl/install) (easiest)
 
 ### One time Config
 
+- `git clone http.... wai-XXX`
 - cd `.../wai-XXX`
 - `git submodule update --init --remote`
 - `bundle install`
+- `netlify link` accept the git remote option
 
 ### Build and serve during dev 
 
