@@ -10,18 +10,16 @@ Currently these are:
 
 ## Local dev env setup
 
-Requires Ruby
+Requires Ruby 2.6.2
 
 ### For Windows
 
 Either use [WSL](https://docs.microsoft.com/en-us/windows/wsl/install) (easiest) or the following for cmd or git for windows bash
 
-https://jekyllrb.com/docs/installation/windows/
-
-- Install the recommended Ruby+DevKit 2.5
+- Install the recommended [Ruby+DevKit 2.6.2](https://jekyllrb.com/docs/installation/windows/)
 - Open a new cmd window
 - gem install jekyll bundler
 - cd to ...\wai-XXX
-- bundle lock --add-platform=x64-mingw32
+- for Git for Windows only - bundle lock --add-platform=x64-mingw32
 - bundle install
 - bundle update
