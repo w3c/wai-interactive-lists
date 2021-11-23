@@ -10,16 +10,34 @@ Currently these are:
 
 ## Local dev env setup
 
-Requires Ruby 2.6.2
+### Global Tools etc
 
-### For Windows
+- VS code or other IDE/editor
+- nodejs & `npm i -g netlify-cli`
+- Ruby 2.6.2 & Ruby Gems 
+- Jekyll 
+
+See [guide](https://jekyllrb.com/docs/installation/) 
+
+### On Windows
 
 Either use [WSL](https://docs.microsoft.com/en-us/windows/wsl/install) (easiest) or the following for cmd or git for windows bash
+
+### Ruby when not using WSL
 
 - Install the recommended [Ruby+DevKit 2.6.2](https://jekyllrb.com/docs/installation/windows/)
 - Open a new cmd window
 - gem install jekyll bundler
 - cd to ...\wai-XXX
-- for Git for Windows only - bundle lock --add-platform=x64-mingw32
-- bundle install
-- bundle update
+- bundle lock --add-platform=x64-mingw32
+
+### One time Config
+
+- cd `.../wai-XXX`
+- `git submodule update --init --remote`
+- `bundle install`
+
+### Build and serve during dev 
+
+- `netlify buid && netlify dev` - no watch HMR etc so rerun to re build
+
