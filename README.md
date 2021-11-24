@@ -36,7 +36,7 @@ Note this is all by convention as currently we do not enforce the flow with requ
 
 ## Editing Options
 
-- the GitHub web app - no tools like spell/syntax checkers, only one file per commit and commit to generate preview
+- GitHub web app - no tools like spell/syntax checkers, only one file per commit and commit to generate preview
 - VS code [web editor](https://docs.github.com/en/codespaces/the-githubdev-web-based-editor) built into GitHub - support tools and multifile commits but commit to generate preview
 - Local development - needs manual setup but provides rapid edit-review cycle without commits
 
@@ -45,12 +45,12 @@ Note this is all by convention as currently we do not enforce the flow with requ
 ### Global Tools etc
 
 - VS code or other IDE/editor
-- netlify CLI - nodejs & `npm i -g netlify-cli`
+- Netlify CLI - install nodejs & `npm i -g netlify-cli`
 - Ruby 2.6.2, Ruby Gems & Jekyll - see [guide](https://jekyllrb.com/docs/installation/) 
 
 #### On Windows
 
-Either use [WSL](https://docs.microsoft.com/en-us/windows/wsl/install) (easiest) or the following for Git for Windows bash
+Either use [WSL](https://docs.microsoft.com/en-us/windows/wsl/install) (easiest - suggest Ubuntu) or the following for Git for Windows bash
 
 - Resinstall [Git 4 Windows](https://gitforwindows.org/) to ensure that `Enable symbolic links` is checked
 - Install the recommended [Ruby+DevKit 2.6.2](https://jekyllrb.com/docs/installation/windows/)
@@ -62,10 +62,14 @@ Either use [WSL](https://docs.microsoft.com/en-us/windows/wsl/install) (easiest)
 - `git clone http.... wai-XXX`
 - `cd .../wai-XXX`
 - `git submodule update --init --remote`
-- `bundle lock --add-platform=x64-mingw32`
 - `bundle install`
 - `netlify link` accept the git remote option
 
 ### Build and Serve 
 
-- `netlify buid && netlify dev` - no file watch, HMR etc so ^C and re run to re build
+- `netlify build && netlify dev` - no file watch, HMR etc so type ^C and re run to re build
+
+The netlify build runs these two commands so is usually more convenient
+
+- `git submodule update --init --remote` update various shared resources like the navigation and languages
+- `bundle exec jekyll build --config '_config.yml,_config_staging.yml'` - run Jekyll SSG to build the site
