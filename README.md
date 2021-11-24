@@ -28,9 +28,9 @@ So in summary:
 - Create a branch and a PR, mark the PR as draft.
 - Either perform local dev or use web editor
 - Commit, and push if required
-- Preview using the link that Netlify adds to the PR (ned to wait for build to update) 
+- Preview using the link that Netlify adds to the PR (ned to wait for build to update) [for example](https://github.com/w3c/wai-course-list/pull/4)
 - Rinse and repeat
-- Remove draft from PR and get WAI team to review and merge
+- Remove draft flag from the PR and get WAI team to review and merge
 
 Note this is all by convention as currently we do not enforce the flow with required reviews and protected branches etc.
 
