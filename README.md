@@ -21,7 +21,18 @@ We use a form of [GitHub Flow](https://docs.github.com/en/get-started/quickstart
 
 Using a draft pull request ensures that everyone in the team can esaily discuss the code, view the CD website and even provide updates. Netlify CD adds information to the PR allowing easy access to the built website preview for the branch.
 
-Once work is ready to be incorporated in the WAI website the PR should be marked ready for review and the WAI website team contected to help in getting it published by merging to master.
+Once work is ready to be incorporated in the WAI website the PR should be marked ready for review and the WAI website team contected to help in getting it published by merging to master. Note resource code needs to be integrated into the WAI website. Once integrated any code on master wil appear next time the WAI site is updated.
+
+So in summary:
+
+- Create a branch and a PR, mark the PR as draft.
+- Either perform local dev or use web editor
+- Commit, and push if required
+- Preview using the link that Netlify adds to the PR (ned to wait for build to update) 
+- Rinse and repeat
+- Remove draft from PR and get WAI team to review and merge
+
+Note this is all by convention as currently we do not enforce the flow with required reviews and protected branches etc.
 
 # Editing Options
 
