@@ -1,26 +1,47 @@
-# wai-interactive-lists
-Common features and issue tracking for WAI resources containing interactive lists. 
+# Shared development for the WAI website interative lists 
 
-Currently these are:
+Common notes, componented and and issue tracking for WAI resources containing interactive lists. 
+
+These are:
 
 - [wai-course-list](https://github.com/w3c/wai-course-list)
 - [wai-authoring-tools-list](https://github.com/w3c/wai-authoring-tools-list)
 - [wai-evaluation-tools-list](https://github.com/w3c/wai-evaluation-tools-list)
 
+# General Development Workflow
 
-## Local dev env setup
+Netlify hosting is integrated with the WAI GitHub repositories to provide Continuous Deployment. This means the website is public and is rebuilt built on commits to GitHub. Note that the websites are only for the resource being worked on. The complete public WAI website is built via a different process.
+
+We use a form of [GitHub Flow](https://docs.github.com/en/get-started/quickstart/github-flow) for development.
+
+- `master` branch is treated as 'published' and content may appear in the public WAI website at any time
+- all dev work is carried out on a branch
+- a draft Pull Request (PR) in GitHub is opened for the branch at the start of the work
+- commits made to the branch on GitHub (possibly via a push from local repo) trigger CD
+
+Using a draft pull request ensures that everyone in the team can esaily discuss the code, view the CD website and even provide updates. Netlify CD adds information to the PR allowing easy access to the built website preview for the branch.
+
+Once work is ready to be incorporated in the WAI website the PR should be marked ready for review and the WAI website team contected to help in getting it published by merging to master.
+
+# Editing Options
+
+- the GitHub web app - no tools like spell/syntax checkers, only one file per commit and commit to generate preview
+- VS code [web editor](https://docs.github.com/en/codespaces/the-githubdev-web-based-editor) built into GitHub - support tools and multifile commits but commit to generate preview
+- Local development - needs manual setup but provides rapid edit-review cycle without commits
+
+## Local Development Environment Setup
 
 ### Global Tools etc
 
 - VS code or other IDE/editor
-- nodejs & `npm i -g netlify-cli`
+- netlify CLI - nodejs & `npm i -g netlify-cli`
 - Ruby 2.6.2, Ruby Gems & Jekyll - see [guide](https://jekyllrb.com/docs/installation/) 
 
 ### On Windows
 
 Either use [WSL](https://docs.microsoft.com/en-us/windows/wsl/install) (easiest) or the following for cmd or git for windows bash
 
-### Ruby on WIndows when not using WSL
+### Ruby on Windows when not using WSL
 
 - Install the recommended [Ruby+DevKit 2.6.2](https://jekyllrb.com/docs/installation/windows/)
 - Open a new cmd window
@@ -28,7 +49,7 @@ Either use [WSL](https://docs.microsoft.com/en-us/windows/wsl/install) (easiest)
 - cd to ...\wai-XXX
 - bundle lock --add-platform=x64-mingw32
 
-### One time Config
+### One-time Config
 
 - `git clone http.... wai-XXX`
 - cd `.../wai-XXX`
@@ -36,6 +57,6 @@ Either use [WSL](https://docs.microsoft.com/en-us/windows/wsl/install) (easiest)
 - `bundle install`
 - `netlify link` accept the git remote option
 
-### Build and serve during dev 
+### Build and Serve 
 
-- `netlify buid && netlify dev` - no watch HMR etc so rerun to re build
+- `netlify buid && netlify dev` - no file watch, HMR etc so ^C and re run to re build
