@@ -55,14 +55,13 @@ Either use [WSL](https://docs.microsoft.com/en-us/windows/wsl/install) (easiest)
 - Install the recommended [Ruby+DevKit 2.6.2](https://jekyllrb.com/docs/installation/windows/)
 - Open a new cmd window
 - `gem install jekyll bundler`
-- cd to ...\wai-XXX
-- `bundle lock --add-platform=x64-mingw32`
 
 ### One-time Config
 
 - `git clone http.... wai-XXX`
-- cd `.../wai-XXX`
+- `cd .../wai-XXX`
 - `git submodule update --init --remote`
+- `bundle lock --add-platform=x64-mingw32`
 - `bundle install`
 - `netlify link` accept the git remote option
 
