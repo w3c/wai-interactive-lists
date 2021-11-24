@@ -8,7 +8,7 @@ These are:
 - [wai-authoring-tools-list](https://github.com/w3c/wai-authoring-tools-list)
 - [wai-evaluation-tools-list](https://github.com/w3c/wai-evaluation-tools-list)
 
-# General Development Workflow
+## General Development Workflow
 
 Netlify hosting is integrated with the WAI GitHub repositories to provide Continuous Deployment. This means the website is public and is rebuilt built on commits to GitHub. Note that the websites are only for the resource being worked on. The complete public WAI website is built via a different process.
 
@@ -34,7 +34,7 @@ So in summary:
 
 Note this is all by convention as currently we do not enforce the flow with required reviews and protected branches etc.
 
-# Editing Options
+## Editing Options
 
 - the GitHub web app - no tools like spell/syntax checkers, only one file per commit and commit to generate preview
 - VS code [web editor](https://docs.github.com/en/codespaces/the-githubdev-web-based-editor) built into GitHub - support tools and multifile commits but commit to generate preview
@@ -48,17 +48,15 @@ Note this is all by convention as currently we do not enforce the flow with requ
 - netlify CLI - nodejs & `npm i -g netlify-cli`
 - Ruby 2.6.2, Ruby Gems & Jekyll - see [guide](https://jekyllrb.com/docs/installation/) 
 
-### On Windows
+#### On Windows
 
 Either use [WSL](https://docs.microsoft.com/en-us/windows/wsl/install) (easiest) or the following for cmd or git for windows bash
 
-### Ruby on Windows when not using WSL
-
 - Install the recommended [Ruby+DevKit 2.6.2](https://jekyllrb.com/docs/installation/windows/)
 - Open a new cmd window
-- gem install jekyll bundler
+- `gem install jekyll bundler`
 - cd to ...\wai-XXX
-- bundle lock --add-platform=x64-mingw32
+- `bundle lock --add-platform=x64-mingw32`
 
 ### One-time Config
 
