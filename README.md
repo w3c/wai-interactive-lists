@@ -50,8 +50,9 @@ Note this is all by convention as currently we do not enforce the flow with requ
 
 #### On Windows
 
-Either use [WSL](https://docs.microsoft.com/en-us/windows/wsl/install) (easiest) or the following for cmd or git for windows bash
+Either use [WSL](https://docs.microsoft.com/en-us/windows/wsl/install) (easiest) or the following for Git for Windows bash
 
+- Resinstall [Git 4 Windows](https://gitforwindows.org/) to ensure that `Enable symbolic links` is checked
 - Install the recommended [Ruby+DevKit 2.6.2](https://jekyllrb.com/docs/installation/windows/)
 - Open a new cmd window
 - `gem install jekyll bundler`
