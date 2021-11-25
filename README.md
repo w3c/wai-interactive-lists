@@ -1,6 +1,6 @@
 # Shared development for the WAI website interative lists 
 
-Common notes, componented and and issue tracking for WAI resources containing interactive lists. 
+Common notes, componented and and issue tracking for WAI Website resources (sections) containing interactive lists. 
 
 These are:
 
@@ -10,35 +10,35 @@ These are:
 
 ## General Development Workflow
 
-Netlify hosting is integrated with the WAI GitHub repositories to provide Continuous Deployment. This means the website is public and is rebuilt built on commits to GitHub. Note that the websites are only for the resource being worked on. The complete public WAI website is built via a different process.
+Netlify hosting is integrated with the WAI GitHub repositories to provide Continuous Deployment (CD). This means the website is public and is rebuilt built on commits to GitHub. Note that these websites are only for the part of the WAI website that list repo contains. The complete public WAI website is built via a different process.
 
-We use a form of [GitHub Flow](https://docs.github.com/en/get-started/quickstart/github-flow) for development.
+We use a form of [GitHub Flow](https://docs.github.com/en/get-started/quickstart/github-flow) workflow for development.
 
-- `master` branch is treated as 'published' and content may appear in the public WAI website at any time
-- all dev work is carried out on a branch
-- a draft Pull Request (PR) in GitHub is opened for the branch at the start of the work
-- commits made to the branch on GitHub (possibly via a push from local repo) trigger CD
+- `master` branch is treated as 'published' and the content may appear in the public WAI website at any time
+- all development work is carried out on a branch
+- a draft Pull Request (PR) in GitHub is opened for the branch at the start of work
+- commits made to the branch on GitHub (possibly via a push from local repo) trigger th continbuous Deployed to update the preview website.
 
-Using a draft pull request ensures that everyone in the team can esaily discuss the code, view the CD website and even provide updates. Netlify CD adds information to the PR allowing easy access to the built website preview for the branch.
+Using a draft Pull Request ensures that everyone in the team can esaily view and discuss the code, access the website and even provide updates. Netlify GitHub integration adds information to the PR allowing easy access to the status and the built preview website for the branch.
 
-Once work is ready to be incorporated in the WAI website the PR should be marked ready for review and the WAI website team contected to help in getting it published by merging to master. Note resource code needs to be integrated into the WAI website. Once integrated any code on master wil appear next time the WAI site is updated.
+Once work is ready to be incorporated in the WAI website the PR should be marked ready for review and the WAI website team contacted to supervise merging to master. Note the resource code needs to be initially integrated into the WAI website. Once integrated, any code on master will appear next time the WAI site is updated.
 
-So in summary:
+So in summary, devlopment workflow is:
 
 - Create a branch and a PR, mark the PR as draft.
-- Either perform local dev or use web editor
-- Commit, and push if required
-- Preview using the link that Netlify adds to the PR (ned to wait for build to update) [for example](https://github.com/w3c/wai-course-list/pull/4)
-- Rinse and repeat
-- Remove draft flag from the PR and get WAI team to review and merge
+- Either perform local dev or use web editor.
+- Commit, and push if required. Do this fairly regularly.
+- Preview the website using the link that Netlify adds to the PR (need to wait for build to update) [for example](https://github.com/w3c/wai-course-list/pull/4).
+- Rinse and repeat.
+- Remove draft flag from the PR and requst WAI website team to review and merge.
 
-Note this is all by convention as currently we do not enforce the flow with required reviews and protected branches etc.
+Note this is all by convention as currently we do not enforce the flow with GitHub required reviews and protected branches etc.
 
 ## Editing Options
 
 - GitHub web app - no tools like spell/syntax checkers, only one file per commit and commit to generate preview
-- VS code [web editor](https://docs.github.com/en/codespaces/the-githubdev-web-based-editor) built into GitHub - support tools and multifile commits but commit to generate preview
-- Local development - needs manual setup but provides rapid edit-review cycle without commits
+- The [web editor](https://docs.github.com/en/codespaces/the-githubdev-web-based-editor) built into GitHub - support tools and multifile commits but commit to generate preview
+- Local development - needs manual setup but provides rapid edit-review cycle without commits to preview
 
 ## Local Development Environment Setup
 
@@ -50,7 +50,11 @@ Note this is all by convention as currently we do not enforce the flow with requ
 
 #### On Windows
 
-Either use [WSL](https://docs.microsoft.com/en-us/windows/wsl/install) (easiest - suggest Ubuntu) or the following for Git for Windows bash
+
+- [WSL](https://docs.microsoft.com/en-us/windows/wsl/install) (easiest - suggest Ubuntu) with VS Code's remote feature.
+- Git for Windows (cmd or bash) - can be fiddly to configure but is the only other Windows option that supports the symb links used. 
+
+##### Git 4 Windows Setup
 
 - Resinstall [Git 4 Windows](https://gitforwindows.org/) to ensure that `Enable symbolic links` and `Use windows terminal` are checked
 - Ensure you have Windows [permission to create symb links](https://github.com/git-for-windows/git/wiki/Symbolic-Links#allowing-non-administrators-to-create-symbolic-links) Admin users will usualy be fine. If not the `git clone` command will throw permission errors for creating the links.
@@ -58,19 +62,17 @@ Either use [WSL](https://docs.microsoft.com/en-us/windows/wsl/install) (easiest 
 - Open a new cmd window
 - `gem install jekyll bundler`
 
-### One-time Config
+### One-time Config for all set-ups
 
-- `git clone http.... wai-XXX`
+- `git clone http.... wai-XXX` - check that `_data/navigation.yml` is indeed a symb link
 - `cd .../wai-XXX`
-- `git submodule update --init --remote`
-- `bundle install`
+- `git submodule update --init --remote` - pulls in the content under `_external/`
+- `bundle install` - install all the Gems (modules)
 - `netlify link` accept the git remote option or otherwise find the w3c\site that exists for the repo
 
-### Build and Serve 
-
-- `netlify build && netlify dev` - no file watch, HMR etc so type ^C and re run to re build
-
-The netlify build runs these two commands so is usually more convenient
+### Build and Serve
 
 - `git submodule update --init --remote` update various shared resources like the navigation and languages
 - `bundle exec jekyll build --config '_config.yml,_config_staging.yml'` - run Jekyll SSG to build the site
+- `netlify build` command runs both of the above for convenience
+- `netlify dev` runs a dev webserver server and open the website in a browser - no file watch, HMR etc so type ^C and re run to re build
