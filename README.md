@@ -53,6 +53,7 @@ Note this is all by convention as currently we do not enforce the flow with requ
 Either use [WSL](https://docs.microsoft.com/en-us/windows/wsl/install) (easiest - suggest Ubuntu) or the following for Git for Windows bash
 
 - Resinstall [Git 4 Windows](https://gitforwindows.org/) to ensure that `Enable symbolic links` and `Use windows terminal` are checked
+- Ensure you have Windows [permission to create symb links](https://github.com/git-for-windows/git/wiki/Symbolic-Links#allowing-non-administrators-to-create-symbolic-links) Admin users will usualy be fine. If not the `git clone` command will throw permission errors for creating the links.
 - Install the recommended [Ruby+DevKit 2.6.2](https://jekyllrb.com/docs/installation/windows/)
 - Open a new cmd window
 - `gem install jekyll bundler`
