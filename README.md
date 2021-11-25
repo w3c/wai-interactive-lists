@@ -52,7 +52,7 @@ Note this is all by convention as currently we do not enforce the flow with requ
 
 Either use [WSL](https://docs.microsoft.com/en-us/windows/wsl/install) (easiest - suggest Ubuntu) or the following for Git for Windows bash
 
-- Resinstall [Git 4 Windows](https://gitforwindows.org/) to ensure that `Enable symbolic links` is checked
+- Resinstall [Git 4 Windows](https://gitforwindows.org/) to ensure that `Enable symbolic links` and `Use windows terminal` are checked
 - Install the recommended [Ruby+DevKit 2.6.2](https://jekyllrb.com/docs/installation/windows/)
 - Open a new cmd window
 - `gem install jekyll bundler`
@@ -63,7 +63,7 @@ Either use [WSL](https://docs.microsoft.com/en-us/windows/wsl/install) (easiest 
 - `cd .../wai-XXX`
 - `git submodule update --init --remote`
 - `bundle install`
-- `netlify link` accept the git remote option
+- `netlify link` accept the git remote option or otherwise find the w3c\site that exists for the repo
 
 ### Build and Serve 
 
