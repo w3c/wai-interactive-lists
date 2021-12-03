@@ -79,7 +79,7 @@ Note this is all by convention as currently we do not enforce the flow with GitH
 
 #### Problems with Jekyll serve and Livereload
 
-Rather than using the Netlify server Jekyll has it's own dev server which supports `-livereload` for automatic browser refresh of chode changes. However this [id not work](https://github.com/w3c/wai-coga/issues/1) on Windows due to problems with the EventMachine gem. It might now be fixed so we can try the following:
+Rather than using the Netlify dev server, Jekyll has it's own which supports `-livereload` for automatic browser refresh of code changes (not HMR). However this [did not work](https://github.com/w3c/wai-coga/issues/1) on Windows due to problems with the EventMachine gem. It might now be fixed so we can try the following:
 
 - Ensure the gemfile has gem `'wdm', '>= 0.1.0' if Gem.win_platform?` to stop file system polling
 - run the server with `bundle exec jekyll serve --livereload`
