@@ -1,6 +1,6 @@
-# Shared development for the WAI website interative lists 
+# Shared development for the WAI website interative lists
 
-Common notes, componented and and issue tracking for WAI Website resources (sections) containing interactive lists. 
+Common notes, components and and issue tracking for WAI Website resources (sections) containing interactive lists.
 
 These are:
 
@@ -46,13 +46,12 @@ Note this is all by convention as currently we do not enforce the flow with GitH
 
 - VS code or other IDE/editor
 - Netlify CLI - install nodejs & `npm i -g netlify-cli`
-- Ruby 2.6.2, Ruby Gems & Jekyll - see [guide](https://jekyllrb.com/docs/installation/) 
+- Ruby 2.6.2, Ruby Gems & Jekyll - see [guide](https://jekyllrb.com/docs/installation/)
 
 #### On Windows
 
-
 - [WSL](https://docs.microsoft.com/en-us/windows/wsl/install) (easiest - suggest Ubuntu) with VS Code's remote feature.
-- Git for Windows (cmd or bash) - can be fiddly to configure but is the only other Windows option that supports the symb links used. 
+- Git for Windows (cmd or bash) - can be fiddly to configure but is the only other Windows option that supports the symb links used.
 
 ##### Git 4 Windows Setup
 
@@ -83,3 +82,7 @@ Rather than using the Netlify dev server, Jekyll has it's own which supports `-l
 
 - Ensure the gemfile has gem `'wdm', '>= 0.1.0' if Gem.win_platform?` to stop file system polling
 - run the server with `bundle exec jekyll serve --livereload`
+
+## Code and previews
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/1c4e89b4-7b13-48c9-8775-2fe585171f90/deploy-status)](https://app.netlify.com/sites/wai-interactive-lists/deploys)

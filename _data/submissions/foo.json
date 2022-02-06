@@ -1,0 +1,16 @@
+{
+  "validated": true,
+  "form": {
+    "form-name": "authoring-tool-submission-1",
+    "form-ref": "test-d42b2120-86bd-11ec-bbd6-257931b339b3",
+    "text-one": "Text",
+    "text-two": "",
+    "option": "one",
+    "checkbox-one": "on",
+    "checkbox-group-one": "on",
+    "checkbox-group-two": "on",
+    "radio": "one",
+    "checkbox-two": "off",
+    "checkbox-group-three": "off"
+  }
+}
