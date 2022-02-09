@@ -35,6 +35,27 @@ test('Form submission should create a Pull Request', async ({
   await page.check('"Grouped checkbox b:"')
   await page.check('"Radio one:"')
 
+  // watch the HTTP action
+  if (true) {
+    page.on('request', (request) => {
+      request.allHeaders().then((v) => console.info(`H: ${JSON.stringify(v, null, "  ")}`))
+      console.info(
+        `Request:
+U: ${request.url()}
+B: ${request.postData()}`
+      )
+    })
+    page.on('response', (response) => {
+      response.body().then((v) => console.info(`B: ${v}`))
+      response.allHeaders().then((v) => console.info(`H: ${JSON.stringify(v, null, "  ")}`))
+      console.info(
+        `Response:
+U: ${response.url()}
+S: ${response.status()}`
+      )
+    })
+  }
+
   let [response] = await Promise.all([
     page.waitForResponse((response) => response.status() === 200),
     page.click('text="Submit"'),
@@ -69,7 +90,7 @@ test('Form submission should create a Pull Request', async ({
     `div[data-details-container-group="file"] table`
   );
   await expect(fileContent).toContainText(
-    new RegExp(`{[\\s\\S]*"id":\\s*"${FORM_ID}`)
+    new RegExp(`{[\\s\\S]*"id":\\s*"${SUBMISSION_REF}`)
   );
 
 

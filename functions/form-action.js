@@ -5,20 +5,25 @@
 const https = require('https')
 const { v1: uuidv1 } = require('uuid') // use v1, timebased so unique each call
 
-// name github dispatch web hook handler uses to triggerthe workflow
-const GITHUB_DISPATCH_EVENT = "form-submission"
+// GitHub dispatch web hook handler used to triggerthe workflow
+const GITHUB_DISPATCH_EVENT = 'form-submission'
+const GITHUB_URI = '/repos/w3c/wai-interactive-lists/dispatches'
 
 function callGitHubWebhook(formData) {
   const reqBody = `{
-        "event_type": GITHUB_DISPATCH_EVENT,
-        "client_payload":
+        "event_type": "${GITHUB_DISPATCH_EVENT}",
+        "client_payload": {
+          "form":
             ${JSON.stringify(formData)}
+          }
     }`
+
+  console.log(reqBody)
 
   const options = {
     hostname: 'api.github.com',
     port: 443,
-    path: '/repos/w3c/wai-course-list/dispatches',
+    path: GITHUB_URI,
     method: 'POST',
     headers: {
       'User-Agent': 'W3C WAI Website list',
