@@ -13,7 +13,7 @@ Goto <a href="../test-form">Test form</a>
 ## Submission {% increment my_counter %}
 
   form_name: {{submission.form_name}}<br/>
-  form_ver : {{submission.form_ver}}<br/>
+  form_ver : {{submission.form_version}}<br/>
   submission_ref : {{submission.submission_ref}}<br/>
   submission_date : {{submission.submission_date | date_to_string}}
 
@@ -30,7 +30,8 @@ Goto <a href="../test-form">Test form</a>
 
 
   {{strings.option_label}}
-  : {{strings[submission.option]}}
+  : {{strings[
+    submission.option]}}
 
 
   {% if submission.checkbox_one -%}

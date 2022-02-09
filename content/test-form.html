@@ -27,9 +27,9 @@ permalink: /test-form
     <fieldset>
         <label>{{strings.option_label}}:
             <select name="option">
-                <option value="none">{{strings.option_none}}</option>
-                <option value="one">{{strings.option_one}}</option>
-                <option value="two">{{strings.option_two}}</option>
+                <option value="option_none">{{strings.option_none}}</option>
+                <option value="option_one">{{strings.option_one}}</option>
+                <option value="option_two">{{strings.option_two}}</option>
             </select>
         </label>
     </fieldset>
@@ -47,13 +47,13 @@ permalink: /test-form
 </div>
 
 <div class="field">
-    <fieldset required>
+    <fieldset>
         <legend>{{strings.checkbox_group_legend}}</legend>
         <label>{{strings.checkbox_group_a}}:
-            <input name="checkbox_group_a" type="checkbox"/>
+            <input group="group1" name="checkbox_group_a" required type="checkbox"/>
         </label>
         <label>{{strings.checkbox_group_b}}:
-            <input name="checkbox_group_b" type="checkbox"/>
+            <input group="group1" name="checkbox_group_b" type="checkbox"/>
         </label>
     </fieldset>
 </div>
@@ -62,11 +62,11 @@ permalink: /test-form
     <fieldset>
         <legend>{{strings.radio_group_legend}}</legend>
         <label>{{strings.radio_one}}:
-            <input name="radio" type="radio" value="one"/>
+            <input name="radio" type="radio" value="radio_one"/>
         </label>
 
         <label>{{strings.radio_two}}:
-            <input name="radio" type="radio" value="two"/>
+            <input name="radio" type="radio" value="radio_two"/>
         </label>
     </fieldset>
 </div>
