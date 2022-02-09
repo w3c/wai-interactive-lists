@@ -3,4 +3,7 @@
     {% assign newItem = item[1] -%}
     {% assign items = items | push: newItem -%}
 {%- endfor -%}
-{%- assign itemsSorted = items | sort: include.sortKey -%}
+{%- assign itemsSorted = items | sort: include.sortKey, "last" -%}
+{%- if include.reverse == true -%}
+    {%- assign itemsSorted = itemsSorted | reverse -%}
+{%- endif -%}

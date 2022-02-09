@@ -5,7 +5,7 @@ permalink: /test-list
 
 Goto <a href="../test-form">Test form</a>
 
-{% include sort-data-folder.liquid data=site.data.submissions sortKey="form-ref" %}
+{% include sort-data-folder.liquid data=site.data.submissions sortKey="submission_date" reverse=true %}
 {% assign strings = site.data.strings %}
 
 {% for submission in itemsSorted %}
