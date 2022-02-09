@@ -18,8 +18,6 @@ function callGitHubWebhook(formData) {
           }
     }`
 
-  console.log(reqBody)
-
   const options = {
     hostname: 'api.github.com',
     port: 443,
@@ -84,20 +82,21 @@ exports.handler = async function (event, context) {
     return { statusCode: 415, body: 'Unsupported Media Type' }
   }
 
-  console.info(event.body)
   const formData = formEncodedToJSON(event.body)
 
   // new id if not in form - v1 date based to avoid dupications
   formData['submission_ref'] = formData['submission_ref'] || uuidv1()
   formData['submission_date'] = (new Date).toISOString()
 
-  const res = await callGitHubWebhook(formData)
+  console.info(`Processing form ${formData['form_name']} ${formData['submission_ref']}`)
 
+  // Invoke GitHub Action
+  const res = await callGitHubWebhook(formData)
   const success = res.statusCode >= 200 && res.statusCode <= 299
   if (!success) {
+    console.error(`GitHub returned failure: ${res.statusCode}, ${res.body}`)
     return { statusCode: res.statusCode, body: `GitHub Action failed with ${res.statusCode}, ${res.body}` }
   }
 
-  //console.info(JSON.stringify(res.body, null, '  '))
   return { statusCode: 200, body: JSON.stringify(formData, null, '  ') }
 }
