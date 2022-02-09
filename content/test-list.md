@@ -8,6 +8,8 @@ Goto <a href="../test-form">Test form</a>
 {% include sort-data-folder.liquid data=site.data.submissions sortKey="submission_date" reverse=true %}
 {% assign strings = site.data.strings %}
 
+Number of submissions: {{itemsSorted.size}}
+
 {% for submission in itemsSorted %}
 
 ## Submission {% increment my_counter %}
