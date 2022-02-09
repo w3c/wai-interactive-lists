@@ -1,0 +1,17 @@
+text_one_label: Text item one label
+text_two_label: Text item two label
+
+option_label: Option label
+option_none: --Please choose an option--
+option_one: Option one
+option_two: Option two
+
+checkbox_one: Checkbox one
+checkbox_two: Checkbox two
+checkbox_group_legend: Checkbox group
+checkbox_group_a: Grouped checkbox a
+checkbox_group_b: Grouped checkbox b
+
+radio_group_legend: Radio group
+radio_one: Radio one
+radio_two: Radio two

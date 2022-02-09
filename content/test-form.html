@@ -3,64 +3,74 @@ title: 'Test Form'
 permalink: /test-form
 ---
 
-{% include netlify-action-form.liquid type="start" name="authoring-tool-submission-1" %}
+<div class="field">
+    Goto:
+    <a href="../test-list">Test list</a>
+</div>
+
+{% assign strings = site.data.strings %}
+
+{% include submission-form.liquid type="start" name="test_submission" version="1"%}
 
 <div class="field">
-  <label>Text one:
-    <input type="text" name="text-one" />
-  </label>
-  <label>Text two:
-    <input type="text" name="text-two" />
-  </label>
+    <fieldset>
+        <label>{{strings.text_one_label}}:
+            <input name="text_one" type="text"/>
+        </label>
+        <label>{{strings.text_two_label}}:
+            <input name="text_two" type="text"/>
+        </label>
+    </fieldset>
 </div>
 
 <div class="field">
-  <label>Select:
-    <select name="option">
-      <option value="">--Please choose an option--</option>
-      <option value="one">Option one</option>
-      <option value="two">Option two</option>
-    </select>
-  </label>
+    <fieldset>
+        <label>{{strings.option_label}}:
+            <select name="option">
+                <option value="none">{{strings.option_none}}</option>
+                <option value="one">{{strings.option_one}}</option>
+                <option value="two">{{strings.option_two}}</option>
+            </select>
+        </label>
+    </fieldset>
 </div>
 
 <div class="field">
-  <label>Checkbox one:
-    <input type="checkbox" name="checkbox-one" />
-  </label>
-  <label>Checkbox two:
-    <input type="checkbox" name="checkbox-two" />
-  </label>
+    <fieldset>
+        <label>{{strings.checkbox_one}}:
+            <input name="checkbox_one" type="checkbox"/>
+        </label>
+        <label>{{strings.checkbox_two}}:
+            <input name="checkbox_two" type="checkbox"/>
+        </label>
+    </fieldset>
 </div>
 
 <div class="field">
-  <fieldset>
-    <legend>Checkbox group:</legend>
-    <label>Grouped checkbox one:
-      <input type="checkbox" name="checkbox-group-one" />
-    </label>
-    <label>Grouped checkbox two:
-      <input type="checkbox" name="checkbox-group-two" />
-    </label>
-    <label>Grouped checkbox three:
-      <input type="checkbox" name="checkbox-group-three" />
-    </label>
-  </fieldset>
+    <fieldset required>
+        <legend>{{strings.checkbox_group_legend}}</legend>
+        <label>{{strings.checkbox_group_a}}:
+            <input name="checkbox_group_a" type="checkbox"/>
+        </label>
+        <label>{{strings.checkbox_group_b}}:
+            <input name="checkbox_group_b" type="checkbox"/>
+        </label>
+    </fieldset>
 </div>
 
 <div class="field">
-  <fieldset>
-    <legend>Radio group:</legend>
-    <label>Radio one
-      <input type="radio" name="radio" value="one" />
-    </label>
+    <fieldset>
+        <legend>{{strings.radio_group_legend}}</legend>
+        <label>{{strings.radio_one}}:
+            <input name="radio" type="radio" value="one"/>
+        </label>
 
-    <label>Radio two
-      <input type="radio" name="radio" value="two" />
-    </label>
-  </fieldset>
+        <label>{{strings.radio_two}}:
+            <input name="radio" type="radio" value="two"/>
+        </label>
+    </fieldset>
 </div>
 
 <button type="submit">Submit</button>
 
-{% include netlify-form.liquid type="end"%}
+{% include submission-form.liquid type="end"%}

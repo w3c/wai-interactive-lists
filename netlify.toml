@@ -10,7 +10,7 @@ RUBY_VERSION = "2.6.2"
 
 [[redirects]]
   from = "/"
-  to = "/test-form"
+  to = "/test-list"
 
 [dev]
 # NB on win64 (cmd or bash shells) --live reload is broken - s/-w --livereload/--no-watch

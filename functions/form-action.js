@@ -5,9 +5,12 @@
 const https = require('https')
 const { v1: uuidv1 } = require('uuid') // use v1, timebased so unique each call
 
+// name github dispatch web hook handler uses to triggerthe workflow
+const GITHUB_DISPATCH_EVENT = "form-submission"
+
 function callGitHubWebhook(formData) {
   const reqBody = `{
-        "event_type": "netlify-form-submission",
+        "event_type": GITHUB_DISPATCH_EVENT,
         "client_payload":
             ${JSON.stringify(formData)}
     }`
@@ -79,26 +82,19 @@ exports.handler = async function (event, context) {
   console.info(event.body)
   const form = formEncodedToJSON(event.body)
 
-  form['form-ref'] = form['form-ref'] || uuidv1() // new id if not in form - v1 date based to avoid dupications
-
-  const Ajv = require('ajv')
-  // @ts-ignore Ajv IS a constructor
-  const ajv = new Ajv({ useDefaults: true, allErrors: true })
-
-  const schema = require('./schema.json')
-  const validator = ajv.compile(schema)
-  const validated = validator(form)
-  const outcome = { validated, form }
-  return { statusCode: 200, body: JSON.stringify(outcome, null, '  ') }
+  // new id if not in form - v1 date based to avoid dupications
+  form['submission_ref'] = form['submission_ref'] || uuidv1()
+  form['submission_date'] = (new Date).toISOString()
 
   const res = await callGitHubWebhook(formData)
 
   const success = res.statusCode >= 200 && res.statusCode <= 299
   console.info(
-    `Form '${formData.meta.name}' ${
-      success ? 'processed' : 'processing failed'
+    `Form '${formData.meta.name}' ${success ? 'processed' : 'processing failed'
     }, ${res.body}, ${formData.meta.referrer}`
   )
+
+  //  return { statusCode: 200, body: JSON.stringify(form, null, '  ') }
 
   return res
 }

@@ -6,22 +6,22 @@
 # 'jekyll serve'. If you change this file, please restart the server process.
 
 # Site settings
-title: 'Web Accessibility Initiative (WAI)'
+title: "Web Accessibility Initiative (WAI)"
 email: your-email@domain.com
 description: > # this means to ignore newlines until "baseurl:"
   The Website of the World Wide Web Consortium’s Web Accessibility Initiative.
-baseurl: '/wai-authoring-tools-list' # the subpath of your site, e.g. /blog
-url: 'https://w3c.github.io' # the base hostname & protocol for your site
+baseurl: "/" # the subpath of your site, e.g. /blog
+url: "https://w3c.github.io" # the base hostname & protocol for your site
 twitter:
   username: w3c_wai
 author: w3c_wai
 exclude:
-  - '_external'
-  - 'Gemfile'
-  - 'Gemfile.lock'
-  - 'README.md'
-  - 'w3c.json'
-  - 'playwright.config.js'
+  - "_external"
+  - "Gemfile"
+  - "Gemfile.lock"
+  - "README.md"
+  - "w3c.json"
+  - "playwright.config.js"
 
 # Build settings
 markdown: kramdown
@@ -36,7 +36,7 @@ ytkey: AIzaSyCiZ9uToWu9jb7BTx47NtzCvmGGXKXp8nI
 
 remote_theme: w3c/wai-website-theme
 
-collections:
+#collections:
 #  business-case:
 #    area: "Plan & Manage"
 #    name: "Business Case"
@@ -49,9 +49,9 @@ collections:
 
 defaults:
   - scope:
-      path: ''
+      path: ""
     values:
-      layout: 'default'
+      layout: "standalone_resource"
 #  -
 #    scope:
 #      path: "_business-case"
