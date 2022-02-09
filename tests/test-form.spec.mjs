@@ -24,8 +24,8 @@ test('Form submission should create a Pull Request', async ({
 
   // Set up the form
   await page.evaluate(
-    (formRef) =>
-      (document.querySelector('input[name="submission_ref"]')["value"] = formRef),
+    (ref) =>
+      (document.querySelector('input[name="submission_ref"]')["value"] = ref),
     SUBMISSION_REF
   )
   await page.fill('"Text item one label:"', 'Some text')
@@ -36,7 +36,7 @@ test('Form submission should create a Pull Request', async ({
   await page.check('"Radio one:"')
 
   // watch the HTTP action
-  if (true) {
+  if (false) {
     page.on('request', (request) => {
       request.allHeaders().then((v) => console.info(`H: ${JSON.stringify(v, null, "  ")}`))
       console.info(
@@ -62,11 +62,7 @@ S: ${response.status()}`
   ])
 
   /*
-      https: await expect(
-        page.locator("text=Your form submission has been received.")
-      ).toBeVisible();
-      await page.click("text=← Back to our site");
-      // await expect(page).toHaveURL(URI) for unknown reason this is routing to parentURI in tests
+      Check for page redirect?
   */
 
   // Check PR created
@@ -75,8 +71,8 @@ S: ${response.status()}`
   expect(response.ok()).toBeTruthy();
 
   // Open PR and show file
-  // TODO Think about using API rather than UI
-  await page.click(`text=/New form submission:.*${SUBMISSION_REF}/`);
+  // TODO Think about using API rather than UI - should be more efficent
+  await page.click(`text=/New form submission of.*${SUBMISSION_REF}/`);
   await expect(page).toHaveURL(new RegExp(`${GH_URI}/pull/\\d+`));
   await page.click("text=Files changed");
   await expect(page).toHaveURL(new RegExp(`${GH_URI}/pull/\\d+/files`));

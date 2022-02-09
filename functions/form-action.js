@@ -97,10 +97,7 @@ exports.handler = async function (event, context) {
   if (!success) {
     return { statusCode: res.statusCode, body: `GitHub Action failed with ${res.statusCode}, ${res.body}` }
   }
-  else {
-    console.info(JSON.stringify(res.body, null, '  '))
-  }
-  return { statusCode: 200, body: JSON.stringify(formData, null, '  ') }
 
-  return res
+  //console.info(JSON.stringify(res.body, null, '  '))
+  return { statusCode: 200, body: JSON.stringify(formData, null, '  ') }
 }
