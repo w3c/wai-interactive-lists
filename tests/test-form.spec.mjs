@@ -35,25 +35,6 @@ test('Form submission should create a Pull Request', async ({
   await page.check('"Grouped checkbox b:"')
   await page.check('"Radio one:"')
 
-  // watch the HTTP action
-  if (true) {
-    page.on('request', (request) =>
-      console.info(
-        `U: ${request.url()}`,
-        `H: ${JSON.stringify(request.allHeaders(), null, '  ')}`,
-        `B: ${JSON.stringify(request.postData(), null, '  ')}`
-      )
-    )
-    page.on('response', (response) => {
-      response.body().then((v) => console.info(`B: ${v}`))
-      console.info(
-        `U: ${response.url()}`,
-        `S: ${response.status()}`,
-        `H: ${JSON.stringify(response.allHeaders(), null, '  ')}`
-      )
-    })
-  }
-
   let [response] = await Promise.all([
     page.waitForResponse((response) => response.status() === 200),
     page.click('text="Submit"'),
@@ -74,14 +55,14 @@ test('Form submission should create a Pull Request', async ({
 
   // Open PR and show file
   // TODO Think about using API rather than UI
-  await page.click(`text=/New form submission:.*${FORM_ID}/`);
+  await page.click(`text=/New form submission:.*${SUBMISSION_REF}/`);
   await expect(page).toHaveURL(new RegExp(`${GH_URI}/pull/\\d+`));
   await page.click("text=Files changed");
   await expect(page).toHaveURL(new RegExp(`${GH_URI}/pull/\\d+/files`));
 
   // Check filename name and file contains the form-id
   const fileName = page.locator(
-    `div[data-details-container-group="file"] a:has-text("_data/courses/${FORM_ID}.json")`
+    `div[data-details-container-group="file"] a:has-text("_data/courses/${SUBMISSION_REF}.json")`
   );
   await expect(fileName).toBeVisible();
   const fileContent = page.locator(
@@ -90,9 +71,7 @@ test('Form submission should create a Pull Request', async ({
   await expect(fileContent).toContainText(
     new RegExp(`{[\\s\\S]*"id":\\s*"${FORM_ID}`)
   );
-  await expect(fileContent).toContainText(
-    new RegExp(`{[\\s\\S]*"submitter-email":\\s*"${SUBMITTER_EMAIL}`)
-  );
+
 
   // Clean up - user needs to be logged in so rely on manual clean up for now
   /* /*  await page.click(`text=Conversation`)

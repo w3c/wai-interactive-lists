@@ -80,21 +80,22 @@ exports.handler = async function (event, context) {
   }
 
   console.info(event.body)
-  const form = formEncodedToJSON(event.body)
+  const formData = formEncodedToJSON(event.body)
 
   // new id if not in form - v1 date based to avoid dupications
-  form['submission_ref'] = form['submission_ref'] || uuidv1()
-  form['submission_date'] = (new Date).toISOString()
+  formData['submission_ref'] = formData['submission_ref'] || uuidv1()
+  formData['submission_date'] = (new Date).toISOString()
 
   const res = await callGitHubWebhook(formData)
 
   const success = res.statusCode >= 200 && res.statusCode <= 299
-  console.info(
-    `Form '${formData.meta.name}' ${success ? 'processed' : 'processing failed'
-    }, ${res.body}, ${formData.meta.referrer}`
-  )
-
-  //  return { statusCode: 200, body: JSON.stringify(form, null, '  ') }
+  if (!success) {
+    return { statusCode: res.statusCode, body: `GitHub Action failed with ${res.statusCode}, ${res.body}` }
+  }
+  else {
+    console.info(JSON.stringify(res.body, null, '  '))
+  }
+  return { statusCode: 200, body: JSON.stringify(formData, null, '  ') }
 
   return res
 }
