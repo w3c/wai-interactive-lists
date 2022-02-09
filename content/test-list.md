@@ -8,7 +8,8 @@ Goto <a href="../test-form">Test form</a>
 {% include sort-data-folder.liquid data=site.data.submissions sortKey="submission_date" reverse=true %}
 {% assign strings = site.data.strings %}
 
-Number of submissions: {{itemsSorted.size}}
+- Number of submissions: {{itemsSorted.size}}
+- [Raw data files ](https://github.com/w3c/wai-interactive-lists/tree/main/_data/submissions)
 
 {% for submission in itemsSorted %}
 
