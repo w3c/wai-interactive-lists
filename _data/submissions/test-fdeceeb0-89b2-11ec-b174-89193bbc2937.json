@@ -1,0 +1,13 @@
+{
+  "checkbox_group_a": "on",
+  "checkbox_group_b": "on",
+  "checkbox_one": "on",
+  "form_name": "test_submission",
+  "form_version": "1",
+  "option": "one",
+  "radio": "one",
+  "submission_date": "2022-02-09T14:17:23.482Z",
+  "submission_ref": "test-fdeceeb0-89b2-11ec-b174-89193bbc2937",
+  "text_one": "Some text",
+  "text_two": ""
+}
