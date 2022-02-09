@@ -3,8 +3,8 @@ import { test, expect } from '@playwright/test'
 import { v1 as uuidv1 } from 'uuid'
 
 // Form
-const LOCAL = true  // alter this to switch between testing local and deployed
-const DOMAIN = (LOCAL) ? 'localhost:8888' : 'https://deploy-preview-73--wai-authoring-tools-list.netlify.app'
+const LOCAL = false  // alter this to switch between testing local and deployed
+const DOMAIN = (LOCAL) ? 'localhost:8888' : 'https://main--wai-interactive-lists.netlify.app'
 const URI = `${DOMAIN}/test-form` // NB no trailing /
 
 // Submission
@@ -72,7 +72,7 @@ S: ${response.status()}`
 
   // Open PR and show file
   // TODO Think about using API rather than UI - should be more efficent
-  await page.click(`text=/New form submission of.*${SUBMISSION_REF}/`);
+  await page.click(`text=/New form submission.*${SUBMISSION_REF}/`);
   await expect(page).toHaveURL(new RegExp(`${GH_URI}/pull/\\d+`));
   await page.click("text=Files changed");
   await expect(page).toHaveURL(new RegExp(`${GH_URI}/pull/\\d+/files`));
