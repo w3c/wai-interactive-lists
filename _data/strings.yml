@@ -1,7 +1,7 @@
-text_one_label: Text item one label
-text_two_label: Text item two label
+text_one_label: Text item one
+text_two_label: Text item two
 
-option_label: Option label
+option_label: Option
 option_none: --Please choose an option--
 option_one: Option one
 option_two: Option two
