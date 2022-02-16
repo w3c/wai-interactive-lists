@@ -52,6 +52,7 @@ defaults:
       path: ""
     values:
       layout: "standalone_resource"
+      standalone_resource_doc_name: Test submissions
 #  -
 #    scope:
 #      path: "_business-case"

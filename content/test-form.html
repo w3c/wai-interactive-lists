@@ -36,6 +36,17 @@ permalink: /test-form
 </div>
 
 <div class="field">
+  <fieldset>
+      <label>{{strings.option2_label}}:
+          <select name="option2[]" multiple>
+              <option value="option2_one">{{strings.option2_one}}</option>
+              <option value="option2_two">{{strings.option2_two}}</option>
+          </select>
+      </label>
+  </fieldset>
+</div>
+
+<div class="field">
     <fieldset>
         <label>{{strings.checkbox_one}}:
             <input name="checkbox_one" type="checkbox"/>
@@ -50,10 +61,10 @@ permalink: /test-form
     <fieldset>
         <legend>{{strings.checkbox_group_legend}}</legend>
         <label>{{strings.checkbox_group_a}}:
-            <input group="group1" name="checkbox_group_a" required type="checkbox"/>
+            <input group="group1" name="checkbox_group[]" required type="checkbox" value="checkbox_group_a"/>
         </label>
         <label>{{strings.checkbox_group_b}}:
-            <input group="group1" name="checkbox_group_b" type="checkbox"/>
+            <input group="group1" name="checkbox_group[]" type="checkbox" value="checkbox_group_b"/>
         </label>
     </fieldset>
 </div>

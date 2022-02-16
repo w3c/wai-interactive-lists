@@ -3,6 +3,7 @@
   "form_name": "test_submission",
   "form_version": "1",
   "option": "option_two",
+  "option2": [],
   "radio": "radio_two",
   "submission_date": "2022-02-09T14:49:05.037Z",
   "submission_ref": "6d79ebd0-89b7-11ec-8da7-651d3f63e706",

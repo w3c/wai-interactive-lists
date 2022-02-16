@@ -30,6 +30,7 @@ test('Form submission should create a Pull Request', async ({
   )
   await page.fill('"Text item one label:"', 'Some text')
   await page.selectOption('"Option label:"', { label: 'Option one' })
+  await page.selectOption('"Option2 label:"', [{ label: 'Option2 one'}, { label: 'Option2 two'} ])
   await page.check('"Checkbox one:"')
   await page.check('"Grouped checkbox a:"')
   await page.check('"Grouped checkbox b:"')

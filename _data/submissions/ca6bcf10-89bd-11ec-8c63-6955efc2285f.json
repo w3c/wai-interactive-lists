@@ -1,11 +1,11 @@
 {
-  "checkbox_group_a": "on",
-  "checkbox_group_b": "on",
+  "checkbox_group":  ["checkbox_group_a", "checkbox_group_b"],
   "checkbox_one": "on",
   "checkbox_two": "on",
   "form_name": "test_submission",
   "form_version": "1",
   "option": "option_one",
+  "option2": ["option2_one"],
   "radio": "radio_one",
   "submission_date": "2022-02-09T15:34:37.954Z",
   "submission_ref": "ca6bcf10-89bd-11ec-8c63-6955efc2285f",

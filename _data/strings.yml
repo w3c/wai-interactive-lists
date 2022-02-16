@@ -6,6 +6,11 @@ option_none: --Please choose an option--
 option_one: Option one
 option_two: Option two
 
+option2_label: Multiple Option
+option2_none: --Please choose an option--
+option2_one: Option2 one
+option2_two: Option2 two
+
 checkbox_one: Checkbox one
 checkbox_two: Checkbox two
 checkbox_group_legend: Checkbox group

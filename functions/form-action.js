@@ -3,6 +3,7 @@
 // when a form submission occurs
 
 const https = require('https')
+const { isArray } = require('util')
 const { v1: uuidv1 } = require('uuid') // use v1, timebased so unique each call
 
 // GitHub dispatch web hook handler used to triggerthe workflow
@@ -58,14 +59,14 @@ function callGitHubWebhook(formData) {
   })
 }
 
-function formEncodedToJSON(formEncoded) {
+function formEncodedToPOJO(formEncoded) {
   const form = new URLSearchParams(formEncoded)
   return Array.from(form.keys()).reduce((result, key) => {
-    if (result[key]) {
-      result[key] = form.getAll(key) // several checkboxes with same name
-      return result
-    }
-    result[key] = form.get(key)
+    const isArrayKey = key.endsWith('[]')
+    const targetKey = isArrayKey ? key.slice(0, -2) : key
+    result[targetKey] = ((result[targetKey] && !Array.isArray(result[targetKey]))) ? // 2nd checkbox with this key
+      form.getAll(targetKey) :
+      (isArrayKey) ? form.getAll(key) : form.get(key)
     return result
   }, {})
 }
@@ -82,7 +83,7 @@ exports.handler = async function (event, context) {
     return { statusCode: 415, body: 'Unsupported Media Type' }
   }
 
-  const formData = formEncodedToJSON(event.body)
+  const formData = formEncodedToPOJO(event.body)
 
   // new id if not in form - v1 date based to avoid dupications
   formData['submission_ref'] = formData['submission_ref'] || uuidv1()
