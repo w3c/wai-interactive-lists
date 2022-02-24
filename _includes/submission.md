@@ -1,7 +1,9 @@
+
+
 {% capture title %} Submission {% increment my_counter %}{% endcapture %}
 {% include box.html type="start" title=title  %}
-<div  markdown="1">
 
+<div  markdown="1">
 
 {% assign strings = site.data.strings %}
 {% assign submission = include.submission %}
@@ -13,13 +15,13 @@ submission_date: {{submission.submission_date | date_to_string}}
 
 {% if submission.text_one.size != 0 -%}
 {{strings.text_one_label}}
-: {{submission.text_one}}
+: {{submission.text_one | escape_once }}
 {%- endif %}
 
 
 {% if submission.text_two.size != 0 -%}
-  {{strings.text_two_label}}
-: {{ submission.text_two }}
+  {{strings.text_two_label }}
+: {{ submission.text_two | escape_once }}
 {%- endif %}
 
 
