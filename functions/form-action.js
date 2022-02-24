@@ -72,6 +72,14 @@ function formEncodedToPOJO(formEncoded) {
 }
 
 exports.handler = async function (event, context) {
+  const response = (code, redir, body) =>
+    ({ statusCode: redir ? 303 : code,     // this is the corect redirect code, UA will GET
+      headers: { ...{"content-type": "application/json"}, ...(redir ? { "Location": redir } : {}) },
+      body: body ? JSON.stringify(body, null, '  ') : ''
+  })
+
+  const mkURI = (path) => path ? `${event.headers.origin}${path}` : null
+
   if (event.httpMethod !== 'POST') {
     console.error(`Invalid http method: ${event.httpMethod}`)
     return { statusCode: 405, body: 'Method Not Allowed' }
@@ -91,13 +99,15 @@ exports.handler = async function (event, context) {
 
   console.info(`Processing form ${formData['form_name']} ${formData['submission_ref']}`)
 
-  // Invoke GitHub Action
+  return response(200, mkURI(formData['success']), formData )
+
+ // Invoke GitHub Action
   const res = await callGitHubWebhook(formData)
   const success = res.statusCode >= 200 && res.statusCode <= 299
   if (!success) {
     console.error(`GitHub returned failure: ${res.statusCode}, ${res.body}`)
-    return { statusCode: res.statusCode, body: `GitHub Action failed with ${res.statusCode}, ${res.body}` }
+    return response(res.statusCode, mkURI(formData['failure']), {"error": "GitHub Action failed with ${res.statusCode}, ${res.body}"})
   }
 
-  return { statusCode: 200, body: JSON.stringify(formData, null, '  ') }
+  return response(200, mkURI(formData['success']), formData )
 }

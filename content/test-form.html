@@ -10,7 +10,10 @@ permalink: /test-form
 
 {% assign strings = site.data.strings %}
 
-{% include submission-form.liquid type="start" name="test_submission" version="1"%}
+{% include submission-form.liquid
+           type="start" name="test_submission"
+           version="1"
+           success="/test-success.html" failure="/test-failure.html" -%}
 
 <div class="field">
     <fieldset>
