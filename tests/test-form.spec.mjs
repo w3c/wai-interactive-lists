@@ -28,9 +28,11 @@ test('Form submission should create a Pull Request', async ({
       (document.querySelector('input[name="submission_ref"]')["value"] = ref),
     SUBMISSION_REF
   )
-  await page.fill('"Text item one label:"', 'Some text')
-  await page.selectOption('"Option label:"', { label: 'Option one' })
-  await page.selectOption('"Option2 label:"', [{ label: 'Option2 one'}, { label: 'Option2 two'} ])
+  // TODO switch to using locators which are strict
+  // TODO see if steps helps group
+  await page.fill('"Text item one:"', 'Some text')
+  await page.selectOption('"Option:"', { label: 'Option one' })
+  await page.selectOption('"Multiple Option:"', [{ label: 'Option2 one'}, { label: 'Option2 two'} ])
   await page.check('"Checkbox one:"')
   await page.check('"Grouped checkbox a:"')
   await page.check('"Grouped checkbox b:"')
